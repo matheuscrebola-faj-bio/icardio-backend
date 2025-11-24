@@ -21,6 +21,9 @@ public class Usuario {
     private String nome;
     private String sobrenome;
     private String documento;
+    private String email;
+    private String telefone;
+    private String assinatura;
     private EPerfil perfil;
     private LocalDateTime criadoEm;
     private LocalDateTime atualizadoEm;

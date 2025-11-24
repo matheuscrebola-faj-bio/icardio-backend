@@ -22,6 +22,10 @@ public class Unidade {
     private String nome;
     private String cidade;
     private String estado;
+    private String endereco;
+    private String contato;
+    private String email;
+    private String telefone;
     @DBRef
     private List<Usuario> usuarios;
     private LocalDateTime criadoEm;
