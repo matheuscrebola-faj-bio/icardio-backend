@@ -1,4 +1,4 @@
 package br.com.fajbio.gateway.api.consumers;
 
-public class UsuarioConsumer {
+public class HomeConsumer {
 }

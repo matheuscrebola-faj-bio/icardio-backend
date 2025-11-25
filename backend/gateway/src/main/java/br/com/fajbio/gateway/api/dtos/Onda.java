@@ -1,4 +1,9 @@
 package br.com.fajbio.gateway.api.dtos;
 
-public record Onda() {
+import java.math.BigDecimal;
+
+public record Onda(
+        BigDecimal inicio,
+        BigDecimal fim
+) {
 }

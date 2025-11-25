@@ -1,4 +1,4 @@
-package br.com.fajbio.autenticacao.domain.enums;
+package br.com.fajbio.gateway.api.enums;
 
 public enum EPerfil {
     MEDICO,

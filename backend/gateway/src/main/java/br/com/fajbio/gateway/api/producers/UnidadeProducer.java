@@ -1,4 +1,4 @@
-package br.com.fajbio.gateway.api.consumer;
+package br.com.fajbio.gateway.api.producers;
 
 public class UnidadeProducer {
 }
