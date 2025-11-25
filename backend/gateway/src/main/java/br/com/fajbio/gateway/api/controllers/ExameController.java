@@ -29,22 +29,8 @@ public class ExameController {
         return null;
     }
 
-    @PostMapping("/pdf")
-    public ResponseEntity<?> receberPDF(
-            @RequestHeader String token
-        ){
-        return null;
-    }
-
-    @PostMapping("/xml")
-    public ResponseEntity<?> receberXML(
-            @RequestHeader String token
-        ){
-        return null;
-    }
-
-    @PostMapping("/hl7")
-    public ResponseEntity<?> receberHL7(
+    @PostMapping("/documentos")
+    public ResponseEntity<?> receberDocumentos(
             @RequestHeader String token
         ){
         return null;
