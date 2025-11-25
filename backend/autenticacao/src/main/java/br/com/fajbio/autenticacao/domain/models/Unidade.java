@@ -20,6 +20,7 @@ public class Unidade {
     @Id
     private String id;
     private String nome;
+    private String apelido;
     private String cidade;
     private String estado;
     private String endereco;
