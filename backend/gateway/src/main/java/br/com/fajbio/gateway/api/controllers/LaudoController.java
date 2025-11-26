@@ -31,4 +31,12 @@ public class LaudoController {
         ){
         return null;
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarOndas(
+            @RequestHeader String token,
+            @PathVariable String id
+    ){
+        return null;
+    }
 }
