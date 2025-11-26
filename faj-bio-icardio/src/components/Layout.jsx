@@ -1,5 +1,6 @@
 import { Link, useNavigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import logo from '../public/faj.png';
 
 export default function Layout() {
   const { logout } = useAuth();
@@ -13,6 +14,7 @@ export default function Layout() {
   return (
     <div>
       <header className="header">
+        <img src={logo} alt="Fundação Adib Jatene" className="logo-imagem" />
         <h1>FAJ BIO - iCardio</h1>
         <nav>
           <Link to="/home">Dashboard</Link>

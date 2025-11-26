@@ -443,3 +443,9 @@ th {
   margin-bottom: 24px;
   color: var(--text);
 }
+
+.logo-imagem {
+  max-width: 80px; /* Garante que a imagem não ultrapasse o container */
+  height: auto;
+  display: block; /* Remove possíveis espaços em branco abaixo da imagem */
+}
