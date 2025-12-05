@@ -3,7 +3,6 @@ package br.com.fajbio.icardio.api.controller;
 import br.com.fajbio.icardio.api.dto.ExameReq;
 import br.com.fajbio.icardio.api.mapper.DocumentoMapper;
 import br.com.fajbio.icardio.api.mapper.ExameMapper;
-import br.com.fajbio.icardio.domain.model.Exame;
 import br.com.fajbio.icardio.domain.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
