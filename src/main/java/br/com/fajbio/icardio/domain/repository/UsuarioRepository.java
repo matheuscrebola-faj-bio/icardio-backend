@@ -1,4 +1,9 @@
 package br.com.fajbio.icardio.domain.repository;
 
-public class UsuarioRepository {
+import br.com.fajbio.icardio.domain.model.Usuario;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UsuarioRepository extends MongoRepository<Usuario,String> {
 }
