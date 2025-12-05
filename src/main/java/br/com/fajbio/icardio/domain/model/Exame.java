@@ -3,11 +3,23 @@ package br.com.fajbio.icardio.domain.model;
 import br.com.fajbio.icardio.domain.enums.EDocumento;
 import br.com.fajbio.icardio.domain.model.auxiliares.Antecedente;
 import br.com.fajbio.icardio.domain.model.auxiliares.Sintoma;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Document
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class Exame {
+    @Id
     private String id;
     private EDocumento tipo;
     private String documento;
