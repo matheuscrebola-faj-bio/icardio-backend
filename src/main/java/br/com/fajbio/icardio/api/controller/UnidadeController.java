@@ -32,11 +32,7 @@ public class UnidadeController {
             @RequestHeader String usuario,
             @RequestBody UnidadeReq req
         ){
-        if (!autenticacaoService.validarToken(token)){
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-        var usr = usuarioService.encontrarPeloId(usuario);
-        if (!usr.getPerfil().equals(EUsuario.ADM)){
+        if (!autenticacaoService.validarToken(token) || !usuarioService.validarUsuarioAdm(usuario)){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         unidadeService.criarUnidade(unidadeMapper.mapear(req));
@@ -48,11 +44,7 @@ public class UnidadeController {
             @RequestHeader String token,
             @RequestHeader String usuario
         ){
-        if (!autenticacaoService.validarToken(token)){
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-        var usr = usuarioService.encontrarPeloId(usuario);
-        if (!usr.getPerfil().equals(EUsuario.ADM)){
+        if (!autenticacaoService.validarToken(token) || !usuarioService.validarUsuarioAdm(usuario)){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         return new ResponseEntity<>(HttpStatus.OK);
@@ -65,15 +57,12 @@ public class UnidadeController {
             @PathVariable String unidade,
             @RequestBody List<UsuarioDTO> dtos
             ){
-        if (!autenticacaoService.validarToken(token)){
+        if (!autenticacaoService.validarToken(token) || !usuarioService.validarUsuarioGestor(usuario)){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        var usr = usuarioService.encontrarPeloId(usuario);
-        if (usr.getPerfil().equals(EUsuario.ADM) || usr.getPerfil().equals(EUsuario.GERENTE)){
             List<Usuario> usuarios = usuarioService.encontrarPeloId(dtos);
             unidadeService.adicionarUsuarios(unidade,usuarios);
             return new ResponseEntity<>(HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
     }
 }

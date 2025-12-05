@@ -1,6 +1,7 @@
 package br.com.fajbio.icardio.domain.service;
 
 import br.com.fajbio.icardio.api.dto.UsuarioDTO;
+import br.com.fajbio.icardio.domain.enums.EUsuario;
 import br.com.fajbio.icardio.domain.model.Usuario;
 import br.com.fajbio.icardio.domain.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,15 @@ public class UsuarioService {
         return dtos.stream()
                 .map(dto -> encontrarPeloId(dto.id()))
                 .collect(Collectors.toList());
+    }
+
+    public boolean validarUsuarioAdm(String usuario) {
+        var usr = encontrarPeloId(usuario);
+        return usr.getPerfil().equals(EUsuario.ADM);
+    }
+
+    public boolean validarUsuarioGestor(String usuario) {
+        var usr = encontrarPeloId(usuario);
+        return usr.getPerfil().equals(EUsuario.ADM) || usr.getPerfil().equals(EUsuario.GERENTE);
     }
 }
