@@ -17,12 +17,13 @@ public class Paciente {
     @Id
     private String id;
     private String nome;
-    private String exame;
-    private String laudo;
-    private String situacao;
-    private String doc;
+    private String dataexame;
+    @DBRef
+    private Documento documento;
     @DBRef
     private Unidade unidade;
     @DBRef
     private Usuario usuario;
+    @DBRef
+    private Exame exame;
 }

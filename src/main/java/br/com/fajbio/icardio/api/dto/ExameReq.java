@@ -14,7 +14,6 @@ public record ExameReq(
         LocalDate nascimento,
         BigDecimal peso,
         BigDecimal altura,
-        BigDecimal imc,
         Sintoma sintoma,
         Antecedente antecedente,
         String observacoes,

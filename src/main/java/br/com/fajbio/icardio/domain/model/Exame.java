@@ -35,8 +35,6 @@ public class Exame {
     private String observacoes;
     private LocalDateTime datahora;
     @DBRef
-    private Documento exame;
-    @DBRef
     private Unidade unidade;
     @DBRef
     private Usuario usuario;

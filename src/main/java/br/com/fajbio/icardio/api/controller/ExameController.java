@@ -3,6 +3,7 @@ package br.com.fajbio.icardio.api.controller;
 import br.com.fajbio.icardio.api.dto.ExameReq;
 import br.com.fajbio.icardio.api.mapper.DocumentoMapper;
 import br.com.fajbio.icardio.api.mapper.ExameMapper;
+import br.com.fajbio.icardio.api.mapper.PacienteMapper;
 import br.com.fajbio.icardio.domain.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,8 @@ public class ExameController {
     private final AutenticacaoService autenticacaoService;
     private final DocumentoService documentoService;
     private final DocumentoMapper documentoMapper;
+    private final PacienteMapper pacienteMapper;
+    private final PacienteService pacienteService;
 
     @PostMapping
     public ResponseEntity<?> criarExame(
@@ -34,7 +37,8 @@ public class ExameController {
         var uni = unidadeService.encontrarPeloId(unidade);
         var usr = usuarioService.encontrarPeloId(usuario);
         var doc = documentoService.salvar(documentoMapper.mapear(req.documento()));
-        exameService.criarExame(exameMapper.mapear(req,uni,usr,doc));
+        var exa = exameService.criarExame(exameMapper.mapear(req,uni,usr));
+        pacienteService.criarPaciente(pacienteMapper.mapear(req,doc,uni,usr,exa));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
