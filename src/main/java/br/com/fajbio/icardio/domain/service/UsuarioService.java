@@ -1,9 +1,13 @@
 package br.com.fajbio.icardio.domain.service;
 
+import br.com.fajbio.icardio.api.dto.UsuarioDTO;
 import br.com.fajbio.icardio.domain.model.Usuario;
 import br.com.fajbio.icardio.domain.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -12,5 +16,11 @@ public class UsuarioService {
 
     public Usuario encontrarPeloId(String id) {
         return repository.findById(id).orElse(null);
+    }
+
+    public List<Usuario> encontrarPeloId(List<UsuarioDTO> dtos) {
+        return dtos.stream()
+                .map(dto -> encontrarPeloId(dto.id()))
+                .collect(Collectors.toList());
     }
 }

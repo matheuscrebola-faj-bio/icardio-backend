@@ -1,40 +1,79 @@
 package br.com.fajbio.icardio.api.controller;
 
+import br.com.fajbio.icardio.api.dto.UnidadeReq;
+import br.com.fajbio.icardio.api.dto.UsuarioDTO;
+import br.com.fajbio.icardio.api.mapper.UnidadeMapper;
+import br.com.fajbio.icardio.api.mapper.UsuarioMapper;
+import br.com.fajbio.icardio.domain.enums.EUsuario;
+import br.com.fajbio.icardio.domain.model.Usuario;
 import br.com.fajbio.icardio.domain.service.AutenticacaoService;
+import br.com.fajbio.icardio.domain.service.UnidadeService;
+import br.com.fajbio.icardio.domain.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/unidades")
 @RequiredArgsConstructor
 public class UnidadeController {
     private final AutenticacaoService autenticacaoService;
+    private final UsuarioService usuarioService;
+    private final UsuarioMapper usuarioMapper;
+    private final UnidadeService unidadeService;
+    private final UnidadeMapper unidadeMapper;
 
     @PostMapping
     public ResponseEntity<?> cadastrarUnidade(
             @RequestHeader String token,
-            @RequestHeader String unidade,
-            @RequestHeader String usuario
+            @RequestHeader String usuario,
+            @RequestBody UnidadeReq req
         ){
         if (!autenticacaoService.validarToken(token)){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-
-        return new ResponseEntity<>(HttpStatus.OK);
+        var usr = usuarioService.encontrarPeloId(usuario);
+        if (!usr.getPerfil().equals(EUsuario.ADM)){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        unidadeService.criarUnidade(unidadeMapper.mapear(req));
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<?> listarUnidades(
             @RequestHeader String token,
-            @RequestHeader String unidade,
             @RequestHeader String usuario
         ){
         if (!autenticacaoService.validarToken(token)){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-
+        var usr = usuarioService.encontrarPeloId(usuario);
+        if (!usr.getPerfil().equals(EUsuario.ADM)){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/unidade")
+    public ResponseEntity<?> adicionarUsuario(
+            @RequestHeader String token,
+            @RequestHeader String usuario,
+            @PathVariable String unidade,
+            @RequestBody List<UsuarioDTO> dtos
+            ){
+        if (!autenticacaoService.validarToken(token)){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        var usr = usuarioService.encontrarPeloId(usuario);
+        if (usr.getPerfil().equals(EUsuario.ADM) || usr.getPerfil().equals(EUsuario.GERENTE)){
+            List<Usuario> usuarios = usuarioService.encontrarPeloId(dtos);
+            unidadeService.adicionarUsuarios(unidade,usuarios);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 }
