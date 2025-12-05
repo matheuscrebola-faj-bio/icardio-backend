@@ -35,4 +35,13 @@ public class ExameController {
         ){
         return null;
     }
+
+    @GetMapping
+    public ResponseEntity<?> listarExames(
+            @RequestHeader String token
+    ){
+        return null;
+    }
+
+
 }
