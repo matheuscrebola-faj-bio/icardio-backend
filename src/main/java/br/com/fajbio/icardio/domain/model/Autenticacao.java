@@ -15,6 +15,5 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Autenticacao {
     @Id
     private String id;
-    private String login;
-    private String senha;
+    private String token;
 }

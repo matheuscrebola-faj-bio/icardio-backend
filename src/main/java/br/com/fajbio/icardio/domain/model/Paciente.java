@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -20,4 +21,8 @@ public class Paciente {
     private String laudo;
     private String situacao;
     private String doc;
+    @DBRef
+    private Unidade unidade;
+    @DBRef
+    private Usuario usuario;
 }

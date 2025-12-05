@@ -1,4 +1,7 @@
 package br.com.fajbio.icardio.api.mapper;
 
-public interface HomeMapper {
+import org.springframework.stereotype.Component;
+
+@Component
+public class HomeMapper {
 }

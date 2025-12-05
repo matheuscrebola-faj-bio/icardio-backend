@@ -18,6 +18,8 @@ public class Usuario {
     private String id;
     private String nome;
     private String sobrenome;
+    private String login;
+    private String senha;
     private String documento;
     private String email;
     private String telefone;
