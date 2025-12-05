@@ -1,10 +1,7 @@
 package br.com.fajbio.icardio.api.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -12,12 +9,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsuarioController {
 
     @PostMapping
-    public void cadastrarUsuario(){
+    public void cadastrarUsuario(
+            @RequestHeader String token,
+            @RequestHeader String unidade,
+            @RequestHeader String usuario
+        ){
 
     }
 
     @GetMapping
-    public void listarUsuarios(){
+    public void listarUsuarios(
+            @RequestHeader String token,
+            @RequestHeader String unidade,
+            @RequestHeader String usuario
+        ){
 
     }
 }
