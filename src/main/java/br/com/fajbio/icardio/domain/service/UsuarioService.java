@@ -1,11 +1,13 @@
 package br.com.fajbio.icardio.domain.service;
 
 import br.com.fajbio.icardio.api.dto.UsuarioDTO;
+import br.com.fajbio.icardio.api.dto.UsuarioReq;
 import br.com.fajbio.icardio.domain.enums.EUsuario;
 import br.com.fajbio.icardio.domain.model.Usuario;
 import br.com.fajbio.icardio.domain.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,5 +35,10 @@ public class UsuarioService {
     public boolean validarUsuarioGestor(String usuario) {
         var usr = encontrarPeloId(usuario);
         return usr.getPerfil().equals(EUsuario.ADM) || usr.getPerfil().equals(EUsuario.GERENTE);
+    }
+
+    @Transactional
+    public Usuario cadastrarUsuario(Usuario usuario) {
+        return repository.save(usuario);
     }
 }

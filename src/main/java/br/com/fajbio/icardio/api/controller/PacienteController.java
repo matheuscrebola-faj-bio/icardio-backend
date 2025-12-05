@@ -2,7 +2,6 @@ package br.com.fajbio.icardio.api.controller;
 
 import br.com.fajbio.icardio.api.dto.PacienteRes;
 import br.com.fajbio.icardio.api.mapper.PacienteMapper;
-import br.com.fajbio.icardio.domain.enums.EUsuario;
 import br.com.fajbio.icardio.domain.model.Paciente;
 import br.com.fajbio.icardio.domain.service.AutenticacaoService;
 import br.com.fajbio.icardio.domain.service.PacienteService;

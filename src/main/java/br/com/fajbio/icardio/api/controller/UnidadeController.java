@@ -63,6 +63,5 @@ public class UnidadeController {
             List<Usuario> usuarios = usuarioService.encontrarPeloId(dtos);
             unidadeService.adicionarUsuarios(unidade,usuarios);
             return new ResponseEntity<>(HttpStatus.OK);
-
     }
 }

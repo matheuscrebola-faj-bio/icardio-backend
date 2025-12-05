@@ -1,5 +1,6 @@
 package br.com.fajbio.icardio.domain.service;
 
+import br.com.fajbio.icardio.api.dto.UsuarioDTO;
 import br.com.fajbio.icardio.domain.model.Unidade;
 import br.com.fajbio.icardio.domain.model.Usuario;
 import br.com.fajbio.icardio.domain.repository.UnidadeRepository;
@@ -23,8 +24,8 @@ public class UnidadeService {
     }
 
     @Transactional
-    public Unidade criarUnidade(Unidade unidade) {
-        return salvar(unidade);
+    public void criarUnidade(Unidade unidade) {
+        salvar(unidade);
     }
 
     @Transactional
@@ -32,5 +33,16 @@ public class UnidadeService {
         var unidade = encontrarPeloId(id);
         unidade.getUsuarios().addAll(usuarios);
         salvar(unidade);
+    }
+
+    @Transactional
+    public void adicionarUsuario(String id, Usuario usuario) {
+        var unidade = encontrarPeloId(id);
+        unidade.getUsuarios().add(usuario);
+        salvar(unidade);
+    }
+
+    public List<Usuario> encontrarUsuarios(String unidade) {
+        return repository.findUsuariosById(unidade);
     }
 }

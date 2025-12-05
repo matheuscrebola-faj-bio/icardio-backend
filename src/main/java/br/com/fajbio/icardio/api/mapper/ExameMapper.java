@@ -8,6 +8,7 @@ import br.com.fajbio.icardio.domain.model.Usuario;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 @Component
@@ -31,6 +32,8 @@ public class ExameMapper {
     }
 
     protected BigDecimal calcularIMC(BigDecimal altura, BigDecimal peso){
-        return peso.divide(altura.multiply(altura));
+        byte escala = 2;
+        BigDecimal alturaQuadrado = altura.multiply(altura);
+        return peso.divide(alturaQuadrado, escala, RoundingMode.HALF_UP);
     }
 }
