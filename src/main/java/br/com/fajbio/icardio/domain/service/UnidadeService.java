@@ -45,4 +45,8 @@ public class UnidadeService {
     public List<Usuario> encontrarUsuarios(String unidade) {
         return repository.findUsuariosById(unidade);
     }
+
+    public Unidade encontrarPeloUsuario(Usuario usuario) {
+        return repository.findByUsuarios(usuario);
+    }
 }

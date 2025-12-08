@@ -3,7 +3,6 @@ package br.com.fajbio.icardio.api.controller;
 import br.com.fajbio.icardio.api.dto.UsuarioReq;
 import br.com.fajbio.icardio.api.dto.UsuarioRes;
 import br.com.fajbio.icardio.api.mapper.UsuarioMapper;
-import br.com.fajbio.icardio.domain.model.Usuario;
 import br.com.fajbio.icardio.domain.service.AutenticacaoService;
 import br.com.fajbio.icardio.domain.service.UnidadeService;
 import br.com.fajbio.icardio.domain.service.UsuarioService;

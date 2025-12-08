@@ -16,4 +16,6 @@ public class Autenticacao {
     @Id
     private String id;
     private String token;
+    private String unidade;
+    private String usuario;
 }

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AutenticacaoRepository extends MongoRepository<Autenticacao,String> {
-    boolean findByToken(String token);
+    Autenticacao findByToken(String token);
 }

@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface UnidadeRepository extends MongoRepository<Unidade,String> {
     List<Usuario> findUsuariosById(String unidade);
+
+    Unidade findByUsuarios(Usuario usuario);
 }

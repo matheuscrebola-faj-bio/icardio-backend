@@ -4,7 +4,6 @@ import br.com.fajbio.icardio.api.dto.UnidadeReq;
 import br.com.fajbio.icardio.api.dto.UsuarioDTO;
 import br.com.fajbio.icardio.api.mapper.UnidadeMapper;
 import br.com.fajbio.icardio.api.mapper.UsuarioMapper;
-import br.com.fajbio.icardio.domain.enums.EUsuario;
 import br.com.fajbio.icardio.domain.model.Usuario;
 import br.com.fajbio.icardio.domain.service.AutenticacaoService;
 import br.com.fajbio.icardio.domain.service.UnidadeService;
@@ -22,7 +21,6 @@ import java.util.List;
 public class UnidadeController {
     private final AutenticacaoService autenticacaoService;
     private final UsuarioService usuarioService;
-    private final UsuarioMapper usuarioMapper;
     private final UnidadeService unidadeService;
     private final UnidadeMapper unidadeMapper;
 
