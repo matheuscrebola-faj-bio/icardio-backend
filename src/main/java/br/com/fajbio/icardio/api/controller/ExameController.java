@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/exames")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class ExameController {
     private final ExameMapper exameMapper;
     private final ExameService exameService;

@@ -16,8 +16,12 @@ public class AutenticacaoService {
     private final UsuarioService usuarioService;
 
     public boolean validarToken(String token) {
-        var tk = repository.findByToken(token);
+        var tk = encontrarPeloToken(token);
         return tk != null;
+    }
+
+    public Autenticacao encontrarPeloToken(String token){
+        return repository.findByToken(token);
     }
 
     public boolean validarUsuario(LoginReq req) {

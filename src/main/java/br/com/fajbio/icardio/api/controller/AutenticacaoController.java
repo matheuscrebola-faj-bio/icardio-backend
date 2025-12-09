@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class AutenticacaoController {
     private final AutenticacaoService autenticacaoService;
     private final AutenticacaoMapper autenticacaoMapper;
@@ -29,7 +30,7 @@ public class AutenticacaoController {
         }
         var usuario = usuarioService.encontrarPeloLogin(req.usuario());
         var unidade = unidadeService.encontrarPeloUsuario(usuario);
-        var res = autenticacaoMapper.mapear(usuario.getId(),unidade.getId());
+        var res = autenticacaoMapper.mapear(usuario.getId(),unidade.getId(),usuario.getPerfil());
         var auth = autenticacaoMapper.mapear(res);
         autenticacaoService.salvar(auth);
         return new ResponseEntity<>(res, HttpStatus.OK);

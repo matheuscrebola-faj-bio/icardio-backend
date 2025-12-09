@@ -1,6 +1,5 @@
 package br.com.fajbio.icardio.domain.service;
 
-import br.com.fajbio.icardio.api.dto.UsuarioDTO;
 import br.com.fajbio.icardio.domain.model.Unidade;
 import br.com.fajbio.icardio.domain.model.Usuario;
 import br.com.fajbio.icardio.domain.repository.UnidadeRepository;
@@ -8,12 +7,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class UnidadeService {
     private final UnidadeRepository repository;
+
     public Unidade encontrarPeloId(String id) {
         return repository.findById(id).orElse(null);
     }
@@ -31,6 +32,9 @@ public class UnidadeService {
     @Transactional
     public void adicionarUsuarios(String id, List<Usuario> usuarios) {
         var unidade = encontrarPeloId(id);
+        if (unidade.getUsuarios() == null) {
+            unidade.setUsuarios(new ArrayList<>());
+        }
         unidade.getUsuarios().addAll(usuarios);
         salvar(unidade);
     }
@@ -43,10 +47,15 @@ public class UnidadeService {
     }
 
     public List<Usuario> encontrarUsuarios(String unidade) {
-        return repository.findUsuariosById(unidade);
+        var uni = encontrarPeloId(unidade);
+        return uni.getUsuarios();
     }
 
     public Unidade encontrarPeloUsuario(Usuario usuario) {
         return repository.findByUsuarios(usuario);
+    }
+
+    public List<Unidade> encontrarTodos() {
+        return repository.findAll();
     }
 }

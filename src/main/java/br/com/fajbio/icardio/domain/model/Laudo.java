@@ -20,5 +20,9 @@ public class Laudo {
     private String id;
     private LocalDate data;
     @DBRef
+    private Unidade unidade;
+    @DBRef
+    private Exame exame;
+    @DBRef
     private Documento ecg;
 }

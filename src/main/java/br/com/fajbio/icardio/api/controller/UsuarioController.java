@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/usuarios")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class UsuarioController {
     private final AutenticacaoService autenticacaoService;
     private final UsuarioService usuarioService;
@@ -38,7 +39,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UsuarioRes>> listarUsuarios(
+    public ResponseEntity<?> listarUsuarios(
             @RequestHeader String token,
             @RequestHeader String unidade,
             @RequestHeader String usuario
@@ -47,6 +48,7 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         List<UsuarioRes> res = usuarioMapper.mapear(unidadeService.encontrarUsuarios(unidade));
+//        var res = usuarioService.encontrarTodos();
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 }

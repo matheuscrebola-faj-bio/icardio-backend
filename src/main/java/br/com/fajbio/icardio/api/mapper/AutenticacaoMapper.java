@@ -1,6 +1,7 @@
 package br.com.fajbio.icardio.api.mapper;
 
 import br.com.fajbio.icardio.api.dto.LoginRes;
+import br.com.fajbio.icardio.domain.enums.EUsuario;
 import br.com.fajbio.icardio.domain.model.Autenticacao;
 import org.springframework.stereotype.Component;
 
@@ -8,11 +9,12 @@ import java.util.UUID;
 
 @Component
 public class AutenticacaoMapper {
-    public LoginRes mapear(String usuario, String unidade) {
+    public LoginRes mapear(String usuario, String unidade, EUsuario perfil) {
         return LoginRes.builder()
                 .token(UUID.randomUUID().toString())
                 .unidade(unidade)
                 .usuario(usuario)
+                .perfil(perfil)
                 .build();
     }
 

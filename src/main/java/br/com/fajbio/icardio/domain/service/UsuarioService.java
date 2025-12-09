@@ -1,7 +1,6 @@
 package br.com.fajbio.icardio.domain.service;
 
 import br.com.fajbio.icardio.api.dto.UsuarioDTO;
-import br.com.fajbio.icardio.api.dto.UsuarioReq;
 import br.com.fajbio.icardio.domain.enums.EUsuario;
 import br.com.fajbio.icardio.domain.model.Usuario;
 import br.com.fajbio.icardio.domain.repository.UsuarioRepository;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,8 +21,9 @@ public class UsuarioService {
 
     public List<Usuario> encontrarPeloId(List<UsuarioDTO> dtos) {
         return dtos.stream()
+                .filter(dto -> dto != null && dto.id() != null && !dto.id().isBlank())
                 .map(dto -> encontrarPeloId(dto.id()))
-                .collect(Collectors.toList());
+                .toList(); // Java 16+
     }
 
     public boolean validarUsuarioAdm(String usuario) {
@@ -44,5 +43,9 @@ public class UsuarioService {
 
     public Usuario encontrarPeloLogin(String login) {
         return repository.findByLogin(login);
+    }
+
+    public List<Usuario> encontrarTodos() {
+        return repository.findAll();
     }
 }

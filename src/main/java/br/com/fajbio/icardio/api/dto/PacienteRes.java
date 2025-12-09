@@ -6,6 +6,7 @@ import lombok.Builder;
 public record PacienteRes(
         String id,
         String nome,
-        String dataexame
+        String dataexame,
+        String idade
 ) {
 }

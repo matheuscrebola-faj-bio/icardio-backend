@@ -1,6 +1,7 @@
 package br.com.fajbio.icardio.domain.model;
 
 import br.com.fajbio.icardio.domain.enums.EDocumento;
+import br.com.fajbio.icardio.domain.enums.ESexo;
 import br.com.fajbio.icardio.domain.model.auxiliares.Antecedente;
 import br.com.fajbio.icardio.domain.model.auxiliares.Sintoma;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,7 @@ public class Exame {
     private BigDecimal peso;
     private BigDecimal altura;
     private BigDecimal imc;
+    private ESexo sexo;
     private Sintoma sintoma;
     private Antecedente antecedente;
     private String observacoes;

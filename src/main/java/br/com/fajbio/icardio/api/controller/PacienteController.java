@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/pacientes")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class PacienteController {
     private final AutenticacaoService autenticacaoService;
     private final PacienteService pacienteService;

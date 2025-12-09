@@ -3,7 +3,6 @@ package br.com.fajbio.icardio.api.controller;
 import br.com.fajbio.icardio.api.dto.UnidadeReq;
 import br.com.fajbio.icardio.api.dto.UsuarioDTO;
 import br.com.fajbio.icardio.api.mapper.UnidadeMapper;
-import br.com.fajbio.icardio.api.mapper.UsuarioMapper;
 import br.com.fajbio.icardio.domain.model.Usuario;
 import br.com.fajbio.icardio.domain.service.AutenticacaoService;
 import br.com.fajbio.icardio.domain.service.UnidadeService;
@@ -18,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/unidades")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class UnidadeController {
     private final AutenticacaoService autenticacaoService;
     private final UsuarioService usuarioService;
@@ -45,10 +45,11 @@ public class UnidadeController {
         if (!autenticacaoService.validarToken(token) || !usuarioService.validarUsuarioAdm(usuario)){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        var res = unidadeMapper.mapear(unidadeService.encontrarTodos());
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
-    @PutMapping("/unidade")
+    @PutMapping("/{unidade}")
     public ResponseEntity<?> adicionarUsuario(
             @RequestHeader String token,
             @RequestHeader String usuario,

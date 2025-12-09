@@ -2,5 +2,13 @@ spring:
   application:
     name: icardio
 
+  data:
+    mongodb:
+      host: 191.252.218.127
+      port: 27018
+      username: webteleecg
+      password: WebTeleECG2025
+      database: teleecg
+
 server:
   port: 8081

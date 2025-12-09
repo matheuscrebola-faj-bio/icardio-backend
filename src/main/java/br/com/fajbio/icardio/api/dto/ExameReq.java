@@ -1,6 +1,7 @@
 package br.com.fajbio.icardio.api.dto;
 
 import br.com.fajbio.icardio.domain.enums.EDocumento;
+import br.com.fajbio.icardio.domain.enums.ESexo;
 import br.com.fajbio.icardio.domain.model.auxiliares.Antecedente;
 import br.com.fajbio.icardio.domain.model.auxiliares.Sintoma;
 
@@ -12,6 +13,7 @@ public record ExameReq(
         String documento,
         String nome,
         LocalDate nascimento,
+        ESexo sexo,
         BigDecimal peso,
         BigDecimal altura,
         Sintoma sintoma,
